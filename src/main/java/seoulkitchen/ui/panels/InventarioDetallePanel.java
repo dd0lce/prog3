@@ -23,7 +23,7 @@ public class InventarioDetallePanel extends JPanel {
         setLayout(new BorderLayout());
         setBackground(StyleGuide.COLOR_BG);
 
-        // Top Navigation
+        
         JPanel topPanel = new JPanel(new BorderLayout());
         topPanel.setBackground(StyleGuide.COLOR_BG);
         topPanel.setBorder(new EmptyBorder(20, 20, 10, 20));
@@ -41,17 +41,17 @@ public class InventarioDetallePanel extends JPanel {
 
         add(topPanel, BorderLayout.NORTH);
 
-        // Content
+        
         JPanel contentPanel = new JPanel();
         contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.Y_AXIS));
         contentPanel.setBackground(StyleGuide.COLOR_BG);
         contentPanel.setBorder(new EmptyBorder(10, 20, 20, 20));
 
-        // Info Panel
+        
         contentPanel.add(createInfoPanel());
         contentPanel.add(Box.createRigidArea(new Dimension(0, 20)));
 
-        // History Panel (Entradas / Salidas)
+        
         contentPanel.add(createHistoryPanel());
 
         add(contentPanel, BorderLayout.CENTER);
@@ -68,7 +68,7 @@ public class InventarioDetallePanel extends JPanel {
         gbc.insets = new Insets(5, 10, 5, 20);
         gbc.weightx = 1.0;
 
-        // Row 1
+        
         gbc.gridx = 0; gbc.gridy = 0; gbc.weightx = 0.33;
         panel.add(createDataField("Ingrediente", "Gochujang"), gbc);
         
@@ -78,7 +78,7 @@ public class InventarioDetallePanel extends JPanel {
         gbc.gridx = 2;
         panel.add(createDataField("Proveedor", "K-Food Suppliers S.A."), gbc);
 
-        // Row 2
+        
         gbc.gridx = 0; gbc.gridy = 1;
         panel.add(createDataField("Cantidad Actual", "2 kg"), gbc);
 
@@ -141,13 +141,13 @@ public class InventarioDetallePanel extends JPanel {
 
         JLabel lbl = new JLabel(labelText);
         lbl.setFont(new Font(StyleGuide.FONT_SMALL.getName(), Font.BOLD, 12));
-        lbl.setForeground(StyleGuide.COLOR_TEXT_SECONDARY); // #757575
+        lbl.setForeground(StyleGuide.COLOR_TEXT_SECONDARY); 
 
         JLabel val = new JLabel(valueText);
         val.setFont(StyleGuide.FONT_REGULAR);
         val.setForeground(StyleGuide.COLOR_TEXT_MAIN);
         
-        // Custom styling for "Stock Bajo (Crítico)" to be red
+        
         if (valueText.contains("Crítico") || valueText.contains("Stock Bajo")) {
             val.setForeground(StyleGuide.COLOR_BADGE_CANCELLED_TEXT);
             val.setFont(new Font(StyleGuide.FONT_REGULAR.getName(), Font.BOLD, 14));

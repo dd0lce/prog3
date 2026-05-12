@@ -67,14 +67,14 @@ public class PlatilloFormDialog extends JDialog {
         gbc.insets = new Insets(10, 0, 5, 0);
         gbc.weightx = 1.0;
 
-        // Nombre
+        
         gbc.gridy = 0;
         formPanel.add(createLabel("Nombre del Platillo:"), gbc);
         gbc.gridy = 1;
         txtNombre = createTextField();
         formPanel.add(txtNombre, gbc);
 
-        // Categoría
+        
         gbc.gridy = 2;
         formPanel.add(createLabel("Categoría:"), gbc);
         gbc.gridy = 3;
@@ -82,14 +82,14 @@ public class PlatilloFormDialog extends JDialog {
         comboCat.setFont(StyleGuide.FONT_REGULAR);
         formPanel.add(comboCat, gbc);
 
-        // Precio
+        
         gbc.gridy = 4;
         formPanel.add(createLabel("Precio:"), gbc);
         gbc.gridy = 5;
         txtPrecio = createTextField();
         formPanel.add(txtPrecio, gbc);
 
-        // Estado
+        
         gbc.gridy = 6;
         formPanel.add(createLabel("Estado:"), gbc);
         gbc.gridy = 7;
@@ -97,7 +97,7 @@ public class PlatilloFormDialog extends JDialog {
         comboEstado.setFont(StyleGuide.FONT_REGULAR);
         formPanel.add(comboEstado, gbc);
 
-        // Descripción
+        
         gbc.gridy = 8;
         formPanel.add(createLabel("Descripción:"), gbc);
         gbc.gridy = 9;
@@ -112,7 +112,7 @@ public class PlatilloFormDialog extends JDialog {
 
         add(formPanel, BorderLayout.CENTER);
 
-        // Footer buttons
+        
         JPanel footerPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         footerPanel.setBackground(StyleGuide.COLOR_BG);
         footerPanel.setBorder(new EmptyBorder(10, 20, 20, 20));
@@ -144,7 +144,7 @@ public class PlatilloFormDialog extends JDialog {
             mainModel.setValueAt(txtPrecio.getText().trim(), editRow, 3);
             mainModel.setValueAt(comboEstado.getSelectedItem().toString(), editRow, 4);
         } else {
-            // New item stub
+            
             JOptionPane.showMessageDialog(this, "Platillo creado.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
         }
 

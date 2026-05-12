@@ -26,7 +26,7 @@ public class PlatilloDetalleDialog extends JDialog {
         container.setBackground(StyleGuide.COLOR_BG);
         container.setBorder(new EmptyBorder(20, 20, 20, 20));
 
-        // Imagen Simulada
+        
         RoundedPanel imagePanel = new RoundedPanel(new BorderLayout(), 20);
         imagePanel.setBackground(Color.LIGHT_GRAY);
         imagePanel.setPreferredSize(new Dimension(400, 200));
@@ -38,7 +38,7 @@ public class PlatilloDetalleDialog extends JDialog {
         container.add(imagePanel);
         container.add(Box.createRigidArea(new Dimension(0, 20)));
 
-        // Descripción
+        
         JLabel lblTitle = new JLabel("Descripción");
         lblTitle.setFont(StyleGuide.FONT_HEADING);
         lblTitle.setForeground(StyleGuide.COLOR_SIDEBAR);
@@ -54,7 +54,7 @@ public class PlatilloDetalleDialog extends JDialog {
         container.add(txtDesc);
         container.add(Box.createRigidArea(new Dimension(0, 20)));
 
-        // Ingredientes
+        
         JLabel lblIngr = new JLabel("Ingredientes Necesarios");
         lblIngr.setFont(StyleGuide.FONT_HEADING);
         lblIngr.setForeground(StyleGuide.COLOR_SIDEBAR);
@@ -69,7 +69,7 @@ public class PlatilloDetalleDialog extends JDialog {
 
         add(container, BorderLayout.CENTER);
 
-        // Footer button
+        
         JPanel footerPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         footerPanel.setBackground(StyleGuide.COLOR_BG);
         footerPanel.setBorder(new EmptyBorder(10, 20, 20, 20));

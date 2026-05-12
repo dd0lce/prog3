@@ -21,8 +21,8 @@ public class PlatilloActionCellEditorRenderer extends AbstractCellEditor impleme
 
     public PlatilloActionCellEditorRenderer(Component parentComponent) {
         renderPanel = createActionPanel();
-        btnViewR = createActionButton("👁", StyleGuide.COLOR_PRIMARY); // View
-        btnEditR = createActionButton("✎", new Color(33, 150, 243)); // Edit
+        btnViewR = createActionButton("👁", StyleGuide.COLOR_PRIMARY); 
+        btnEditR = createActionButton("✎", new Color(33, 150, 243)); 
         renderPanel.add(btnViewR);
         renderPanel.add(btnEditR);
 

@@ -23,7 +23,7 @@ public class ClienteDetallePanel extends JPanel {
         setLayout(new BorderLayout());
         setBackground(StyleGuide.COLOR_BG);
 
-        // Top Navigation
+        
         JPanel topPanel = new JPanel(new BorderLayout());
         topPanel.setBackground(StyleGuide.COLOR_BG);
         topPanel.setBorder(new EmptyBorder(20, 20, 10, 20));
@@ -41,21 +41,21 @@ public class ClienteDetallePanel extends JPanel {
 
         add(topPanel, BorderLayout.NORTH);
 
-        // Content Scrollable
+        
         JPanel contentPanel = new JPanel();
         contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.Y_AXIS));
         contentPanel.setBackground(StyleGuide.COLOR_BG);
         contentPanel.setBorder(new EmptyBorder(10, 20, 20, 20));
 
-        // 1. Información Personal
+        
         contentPanel.add(createInfoPanel());
         contentPanel.add(Box.createRigidArea(new Dimension(0, 20)));
         
-        // 2. Estadísticas
+        
         contentPanel.add(createStatsPanel());
         contentPanel.add(Box.createRigidArea(new Dimension(0, 20)));
 
-        // 3. Historial de Órdenes
+        
         contentPanel.add(createHistoryPanel());
 
         JScrollPane mainScroll = new JScrollPane(contentPanel);
@@ -75,7 +75,7 @@ public class ClienteDetallePanel extends JPanel {
         gbc.insets = new Insets(5, 10, 5, 20);
         gbc.weightx = 1.0;
 
-        // Título del subpanel
+        
         JLabel headerLabel = new JLabel("Información Personal");
         headerLabel.setFont(StyleGuide.FONT_HEADING);
         headerLabel.setForeground(StyleGuide.COLOR_SIDEBAR);
@@ -100,7 +100,7 @@ public class ClienteDetallePanel extends JPanel {
     private JPanel createStatsPanel() {
         RoundedPanel panel = new RoundedPanel(new GridLayout(1, 2, 20, 0), 20);
         panel.setBackground(StyleGuide.COLOR_BG);
-        panel.setOpaque(false); // Transparente para que se vean los bordes redondeados de los hijos sin conflicto
+        panel.setOpaque(false); 
         panel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 120));
 
         panel.add(createStatCard("Total Gastado", "$875.00", "💰"));
@@ -116,7 +116,7 @@ public class ClienteDetallePanel extends JPanel {
 
         JLabel lblTitle = new JLabel(title);
         lblTitle.setFont(StyleGuide.FONT_REGULAR);
-        lblTitle.setForeground(StyleGuide.COLOR_TEXT_SECONDARY); // #757575
+        lblTitle.setForeground(StyleGuide.COLOR_TEXT_SECONDARY); 
 
         JLabel lblValue = new JLabel(value);
         lblValue.setFont(new Font(StyleGuide.FONT_TITLE.getName(), Font.BOLD, 28));
@@ -182,7 +182,7 @@ public class ClienteDetallePanel extends JPanel {
 
         JLabel lbl = new JLabel(labelText);
         lbl.setFont(new Font(StyleGuide.FONT_SMALL.getName(), Font.BOLD, 12));
-        lbl.setForeground(StyleGuide.COLOR_TEXT_SECONDARY); // #757575
+        lbl.setForeground(StyleGuide.COLOR_TEXT_SECONDARY); 
 
         JLabel val = new JLabel(valueText);
         val.setFont(StyleGuide.FONT_REGULAR);

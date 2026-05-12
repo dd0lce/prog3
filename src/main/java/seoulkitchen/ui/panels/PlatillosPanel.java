@@ -23,7 +23,7 @@ public class PlatillosPanel extends JPanel {
         setLayout(new BorderLayout());
         setBackground(StyleGuide.COLOR_BG);
 
-        // Header and Actions
+        
         JPanel topPanel = new JPanel(new BorderLayout());
         topPanel.setBackground(StyleGuide.COLOR_BG);
         topPanel.setBorder(new EmptyBorder(20, 20, 20, 20));
@@ -70,7 +70,7 @@ public class PlatillosPanel extends JPanel {
 
         add(topPanel, BorderLayout.NORTH);
 
-        // Table
+        
         JPanel tableContainer = new JPanel(new BorderLayout());
         tableContainer.setBackground(StyleGuide.COLOR_BG);
         tableContainer.setBorder(new EmptyBorder(0, 20, 20, 20));
@@ -85,7 +85,7 @@ public class PlatillosPanel extends JPanel {
         DefaultTableModel model = new DefaultTableModel(data, columnNames) {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return column == 5; // Solo la columna de acciones es editable
+                return column == 5; 
             }
         };
 
@@ -96,26 +96,26 @@ public class PlatillosPanel extends JPanel {
         table.setShowGrid(false);
         table.setIntercellSpacing(new Dimension(0, 0));
 
-        // Filas alternadas en crema
+        
         table.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
             @Override
             public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
                 Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
                 if (!isSelected) {
-                    c.setBackground(row % 2 == 0 ? Color.WHITE : new Color(253, 249, 241)); // Crema claro
+                    c.setBackground(row % 2 == 0 ? Color.WHITE : new Color(253, 249, 241)); 
                 }
                 return c;
             }
         });
 
-        // Header Styling
+        
         JTableHeader header = table.getTableHeader();
-        header.setBackground(StyleGuide.COLOR_SIDEBAR); // #704214
+        header.setBackground(StyleGuide.COLOR_SIDEBAR); 
         header.setForeground(Color.WHITE);
         header.setFont(StyleGuide.FONT_BOLD);
         header.setPreferredSize(new Dimension(100, 40));
 
-        // Custom Renderers
+        
         table.getColumnModel().getColumn(4).setCellRenderer(new BadgeRenderer());
         
         PlatilloActionCellEditorRenderer actionRenderer = new PlatilloActionCellEditorRenderer(this);

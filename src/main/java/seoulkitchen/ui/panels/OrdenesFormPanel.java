@@ -34,17 +34,17 @@ public class OrdenesFormPanel extends JPanel {
         this.mainModel = model;
         this.editRow = row;
         
-        // Populate fields if possible
+        
         String client = model.getValueAt(row, 1).toString();
         comboClient.setSelectedItem(client);
         
         String estado = model.getValueAt(row, 4).toString();
         comboEstado.setSelectedItem(estado);
         
-        // Mock loading details for the prototype
+        
         detailModel.setRowCount(0);
         totalAmount = 0.0;
-        // Simulating one existing dish
+        
         detailModel.addRow(new Object[]{"Bibimbap Especial", "$185.00", 1, "$185.00"});
         totalAmount = 185.0;
         totalLabel.setText(String.format("Total: $%.2f", totalAmount));
@@ -54,7 +54,7 @@ public class OrdenesFormPanel extends JPanel {
         setLayout(new BorderLayout());
         setBackground(StyleGuide.COLOR_BG);
 
-        // Header
+        
         JPanel topPanel = new JPanel(new BorderLayout());
         topPanel.setBackground(StyleGuide.COLOR_BG);
         topPanel.setBorder(new EmptyBorder(20, 20, 10, 20));
@@ -75,7 +75,7 @@ public class OrdenesFormPanel extends JPanel {
         btnBack.setFont(StyleGuide.FONT_BOLD);
         btnBack.setBackground(Color.WHITE);
         btnBack.addActionListener(e -> {
-            editRow = -1; // clear edit mode
+            editRow = -1; 
             parentPanel.showCard("List");
         });
         headerRightPanel.add(btnBack);
@@ -84,12 +84,12 @@ public class OrdenesFormPanel extends JPanel {
 
         add(topPanel, BorderLayout.NORTH);
 
-        // Content
+        
         JPanel contentPanel = new JPanel(new BorderLayout(20, 20));
         contentPanel.setBackground(StyleGuide.COLOR_BG);
         contentPanel.setBorder(new EmptyBorder(0, 20, 20, 20));
 
-        // Form fields (Top part of content)
+        
         RoundedPanel formContainer = new RoundedPanel(new GridBagLayout(), 20);
         formContainer.setBackground(Color.WHITE);
         formContainer.setBorder(new EmptyBorder(15, 15, 15, 15));
@@ -98,7 +98,7 @@ public class OrdenesFormPanel extends JPanel {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.insets = new Insets(5, 10, 5, 10);
         
-        // Cliente
+        
         gbc.gridx = 0; gbc.gridy = 0;
         formContainer.add(createLabel("Cliente:"), gbc);
         
@@ -107,7 +107,7 @@ public class OrdenesFormPanel extends JPanel {
         gbc.gridx = 1; gbc.weightx = 1.0;
         formContainer.add(comboClient, gbc);
 
-        // Platillo
+        
         gbc.gridx = 0; gbc.gridy = 1; gbc.weightx = 0.0;
         formContainer.add(createLabel("Platillo:"), gbc);
 
@@ -116,7 +116,7 @@ public class OrdenesFormPanel extends JPanel {
         gbc.gridx = 1; gbc.weightx = 0.7;
         formContainer.add(comboPlatillo, gbc);
 
-        // Cantidad
+        
         gbc.gridx = 2; gbc.weightx = 0.0;
         formContainer.add(createLabel("Cant:"), gbc);
 
@@ -126,7 +126,7 @@ public class OrdenesFormPanel extends JPanel {
         gbc.gridx = 3; gbc.weightx = 0.1;
         formContainer.add(txtCantidad, gbc);
 
-        // Agregar btn
+        
         RoundedButton btnAdd = new RoundedButton("Agregar");
         btnAdd.setBackground(StyleGuide.COLOR_SIDEBAR);
         btnAdd.setForeground(Color.WHITE);
@@ -137,7 +137,7 @@ public class OrdenesFormPanel extends JPanel {
 
         contentPanel.add(formContainer, BorderLayout.NORTH);
 
-        // Table for Detalle de Orden
+        
         String[] columns = {"Platillo", "Precio Unitario", "Cantidad", "Subtotal"};
         detailModel = new DefaultTableModel(null, columns) {
             @Override
@@ -160,7 +160,7 @@ public class OrdenesFormPanel extends JPanel {
         scrollPane.getViewport().setBackground(Color.WHITE);
         contentPanel.add(scrollPane, BorderLayout.CENTER);
 
-        // Footer with Total and Guardar
+        
         JPanel bottomPanel = new JPanel(new BorderLayout());
         bottomPanel.setBackground(StyleGuide.COLOR_BG);
 
@@ -197,7 +197,7 @@ public class OrdenesFormPanel extends JPanel {
             return;
         }
 
-        // Parse price from string e.g. "Bibimbap Especial ($185.00)"
+        
         double price = 0;
         String name = selected;
         if (selected != null && selected.contains("($")) {
@@ -221,17 +221,17 @@ public class OrdenesFormPanel extends JPanel {
         }
 
         if (editRow != -1 && mainModel != null) {
-            // Edit existing order
+            
             mainModel.setValueAt(comboClient.getSelectedItem().toString(), editRow, 1);
             mainModel.setValueAt(String.format("$%.2f", totalAmount), editRow, 3);
             mainModel.setValueAt(comboEstado.getSelectedItem().toString(), editRow, 4);
         } else {
-            // (Mocking) If creating a new order, we would normally append a new row to mainModel here.
+            
         }
 
         JOptionPane.showMessageDialog(this, "Orden guardada exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
         
-        // Clear form
+        
         comboClient.setSelectedIndex(0);
         comboPlatillo.setSelectedIndex(0);
         comboEstado.setSelectedIndex(0);
@@ -241,8 +241,8 @@ public class OrdenesFormPanel extends JPanel {
         totalLabel.setText("Total: $0.00");
 
         if (editRow != -1) {
-            editRow = -1; // Reset edit mode
-            parentPanel.showCard("List"); // Go back automatically
+            editRow = -1; 
+            parentPanel.showCard("List"); 
         }
     }
 }

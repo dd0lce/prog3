@@ -25,7 +25,7 @@ public class CrudPanel extends JPanel {
         setLayout(new BorderLayout());
         setBackground(StyleGuide.COLOR_BG);
 
-        // Header and Actions
+        
         JPanel topPanel = new JPanel(new BorderLayout());
         topPanel.setBackground(StyleGuide.COLOR_BG);
         topPanel.setBorder(new EmptyBorder(20, 20, 20, 20));
@@ -72,7 +72,7 @@ public class CrudPanel extends JPanel {
 
         add(topPanel, BorderLayout.NORTH);
 
-        // Table
+        
         JPanel tableContainer = new JPanel(new BorderLayout());
         tableContainer.setBackground(StyleGuide.COLOR_BG);
         tableContainer.setBorder(new EmptyBorder(0, 20, 20, 20));
@@ -87,7 +87,7 @@ public class CrudPanel extends JPanel {
         DefaultTableModel model = new DefaultTableModel(data, columnNames) {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return column == 4; // Solo la columna de acciones es editable (para los botones)
+                return column == 4; 
             }
         };
 
@@ -98,14 +98,14 @@ public class CrudPanel extends JPanel {
         table.setShowGrid(false);
         table.setIntercellSpacing(new Dimension(0, 0));
 
-        // Header Styling
+        
         JTableHeader header = table.getTableHeader();
         header.setBackground(StyleGuide.COLOR_SIDEBAR);
         header.setForeground(Color.WHITE);
         header.setFont(StyleGuide.FONT_BOLD);
         header.setPreferredSize(new Dimension(100, 40));
 
-        // Custom Renderers
+        
         table.getColumnModel().getColumn(3).setCellRenderer(new BadgeRenderer());
         
         ActionCellEditorRenderer actionRenderer = new ActionCellEditorRenderer(this);

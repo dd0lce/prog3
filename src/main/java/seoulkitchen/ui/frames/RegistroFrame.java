@@ -11,7 +11,7 @@ public class RegistroFrame extends JFrame {
 
     public RegistroFrame() {
         setTitle("THE SEOUL KITCHEN - Registro");
-        setSize(550, 700);
+        setSize(1440, 1024);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         getContentPane().setBackground(StyleGuide.COLOR_BG);
@@ -26,7 +26,7 @@ public class RegistroFrame extends JFrame {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.weightx = 1.0;
 
-        // Title
+        
         JLabel titleLabel = new JLabel("REGISTRO", SwingConstants.CENTER);
         titleLabel.setFont(new Font(StyleGuide.FONT_TITLE.getName(), Font.BOLD, 24));
         titleLabel.setForeground(StyleGuide.COLOR_SIDEBAR);
@@ -36,7 +36,7 @@ public class RegistroFrame extends JFrame {
         gbc.insets = new Insets(30, 20, 5, 20);
         centralPanel.add(titleLabel, gbc);
 
-        // Subtitle
+        
         JLabel subtitleLabel = new JLabel("Crea tu cuenta de administrador", SwingConstants.CENTER);
         subtitleLabel.setFont(StyleGuide.FONT_REGULAR);
         subtitleLabel.setForeground(StyleGuide.COLOR_TEXT_SECONDARY);
@@ -44,7 +44,7 @@ public class RegistroFrame extends JFrame {
         gbc.insets = new Insets(0, 20, 25, 20);
         centralPanel.add(subtitleLabel, gbc);
 
-        // Nombre
+        
         gbc.gridy = 2;
         gbc.gridx = 0;
         gbc.gridwidth = 1;
@@ -55,7 +55,7 @@ public class RegistroFrame extends JFrame {
         gbc.insets = new Insets(0, 20, 15, 10);
         centralPanel.add(createTextField(), gbc);
 
-        // Apellido
+        
         gbc.gridy = 2;
         gbc.gridx = 1;
         gbc.insets = new Insets(5, 10, 5, 20);
@@ -65,7 +65,7 @@ public class RegistroFrame extends JFrame {
         gbc.insets = new Insets(0, 10, 15, 20);
         centralPanel.add(createTextField(), gbc);
 
-        // Email (Full width)
+        
         gbc.gridy = 4;
         gbc.gridx = 0;
         gbc.gridwidth = 2;
@@ -76,7 +76,7 @@ public class RegistroFrame extends JFrame {
         gbc.insets = new Insets(0, 20, 15, 20);
         centralPanel.add(createTextField(), gbc);
 
-        // Usuario (Full width)
+        
         gbc.gridy = 6;
         gbc.gridx = 0;
         gbc.gridwidth = 2;
@@ -87,7 +87,7 @@ public class RegistroFrame extends JFrame {
         gbc.insets = new Insets(0, 20, 15, 20);
         centralPanel.add(createTextField(), gbc);
 
-        // Contraseña
+        
         gbc.gridy = 8;
         gbc.gridx = 0;
         gbc.gridwidth = 1;
@@ -98,7 +98,7 @@ public class RegistroFrame extends JFrame {
         gbc.insets = new Insets(0, 20, 25, 10);
         centralPanel.add(createPasswordField(), gbc);
 
-        // Confirmar Contraseña
+        
         gbc.gridy = 8;
         gbc.gridx = 1;
         gbc.insets = new Insets(5, 10, 5, 20);
@@ -108,7 +108,7 @@ public class RegistroFrame extends JFrame {
         gbc.insets = new Insets(0, 10, 25, 20);
         centralPanel.add(createPasswordField(), gbc);
 
-        // Success Label
+        
         JLabel successLabel = new JLabel("Cuenta creada exitosamente", SwingConstants.CENTER);
         successLabel.setFont(StyleGuide.FONT_BOLD);
         successLabel.setForeground(StyleGuide.COLOR_BADGE_ACTIVE_TEXT);
@@ -119,7 +119,7 @@ public class RegistroFrame extends JFrame {
         gbc.insets = new Insets(0, 20, 10, 20);
         centralPanel.add(successLabel, gbc);
 
-        // Botón CREAR CUENTA
+        
         RoundedButton btnRegister = new RoundedButton("CREAR CUENTA");
         StyleGuide.stylePrimaryButton(btnRegister);
         btnRegister.addActionListener(e -> {

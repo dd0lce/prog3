@@ -21,9 +21,9 @@ public class ActionCellEditorRenderer extends AbstractCellEditor implements Tabl
 
     public ActionCellEditorRenderer(Component parentComponent) {
         renderPanel = createActionPanel();
-        btnViewR = createActionButton("👁", StyleGuide.COLOR_PRIMARY); // View (Eye)
-        btnEditR = createActionButton("✎", new Color(33, 150, 243)); // Edit (Pencil)
-        btnDeleteR = createActionButton("🗑", StyleGuide.COLOR_BADGE_CANCELLED_TEXT); // Delete (Trash)
+        btnViewR = createActionButton("👁", StyleGuide.COLOR_PRIMARY); 
+        btnEditR = createActionButton("✎", new Color(33, 150, 243)); 
+        btnDeleteR = createActionButton("🗑", StyleGuide.COLOR_BADGE_CANCELLED_TEXT); 
         renderPanel.add(btnViewR);
         renderPanel.add(btnEditR);
         renderPanel.add(btnDeleteR);

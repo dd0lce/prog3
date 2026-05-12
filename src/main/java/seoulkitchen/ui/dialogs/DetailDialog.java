@@ -23,7 +23,7 @@ public class DetailDialog extends JDialog {
         mainPanel.setBackground(StyleGuide.COLOR_BG);
         mainPanel.setBorder(new EmptyBorder(20, 20, 20, 20));
 
-        // Información Personal / Principal
+        
         mainPanel.add(createSectionTitle("Información Principal"));
         mainPanel.add(createInfoRow("Nombre:", "Bibimbap Especial"));
         mainPanel.add(createInfoRow("Categoría:", "Plato Fuerte"));
@@ -32,7 +32,7 @@ public class DetailDialog extends JDialog {
         mainPanel.add(new JSeparator());
         mainPanel.add(Box.createRigidArea(new Dimension(0, 15)));
 
-        // Historial
+        
         mainPanel.add(createSectionTitle("Historial"));
         mainPanel.add(createInfoRow("Última Venta:", "10 de Octubre, 2023"));
         mainPanel.add(createInfoRow("Creado Por:", "Admin"));
@@ -40,14 +40,14 @@ public class DetailDialog extends JDialog {
         mainPanel.add(new JSeparator());
         mainPanel.add(Box.createRigidArea(new Dimension(0, 15)));
 
-        // Estadísticas
+        
         mainPanel.add(createSectionTitle("Estadísticas"));
         mainPanel.add(createInfoRow("Total Vendidos:", "342 unidades"));
         mainPanel.add(createInfoRow("Ingresos Generados:", "$63,270.00"));
 
         add(mainPanel, BorderLayout.CENTER);
 
-        // Footer con botón de cerrar
+        
         JPanel footerPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         footerPanel.setBackground(StyleGuide.COLOR_BG);
         footerPanel.setBorder(new EmptyBorder(10, 20, 20, 20));

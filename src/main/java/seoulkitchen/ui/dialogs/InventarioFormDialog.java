@@ -70,14 +70,14 @@ public class InventarioFormDialog extends JDialog {
         gbc.insets = new Insets(10, 5, 5, 5);
         gbc.weightx = 0.5;
 
-        // Row 1: Nombre (Full width)
+        
         gbc.gridx = 0; gbc.gridy = 0; gbc.gridwidth = 2;
         formPanel.add(createLabel("Nombre del Ingrediente:"), gbc);
         gbc.gridy = 1;
         txtNombre = createTextField();
         formPanel.add(txtNombre, gbc);
 
-        // Row 2: Categoria y Unidad de Medida
+        
         gbc.gridwidth = 1;
         gbc.gridy = 2; gbc.gridx = 0;
         formPanel.add(createLabel("Categoría:"), gbc);
@@ -94,7 +94,7 @@ public class InventarioFormDialog extends JDialog {
         comboUnidad.setFont(StyleGuide.FONT_REGULAR);
         formPanel.add(comboUnidad, gbc);
 
-        // Row 3: Stock Inicial y Stock Minimo
+        
         gbc.gridy = 4; gbc.gridx = 0;
         formPanel.add(createLabel("Cantidad:"), gbc);
         gbc.gridx = 1;
@@ -108,7 +108,7 @@ public class InventarioFormDialog extends JDialog {
         txtStockMin = createTextField();
         formPanel.add(txtStockMin, gbc);
 
-        // Row 4: Stock Optimo & Estado
+        
         gbc.gridy = 6; gbc.gridx = 0;
         formPanel.add(createLabel("Stock Óptimo:"), gbc);
         
@@ -126,7 +126,7 @@ public class InventarioFormDialog extends JDialog {
 
         add(formPanel, BorderLayout.CENTER);
 
-        // Footer buttons
+        
         JPanel footerPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         footerPanel.setBackground(StyleGuide.COLOR_BG);
         footerPanel.setBorder(new EmptyBorder(10, 20, 20, 20));
@@ -160,7 +160,7 @@ public class InventarioFormDialog extends JDialog {
             mainModel.setValueAt(txtStockMin.getText().trim() + " " + unidad, editRow, 3);
             mainModel.setValueAt(comboEstado.getSelectedItem().toString(), editRow, 4);
         } else {
-            // New ingredient stub
+            
             JOptionPane.showMessageDialog(this, "Ingrediente creado.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
         }
 

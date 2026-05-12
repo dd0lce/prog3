@@ -14,7 +14,7 @@ public class LoginFrame extends JFrame {
 
     public LoginFrame() {
         setTitle("THE SEOUL KITCHEN - Iniciar Sesión");
-        setSize(450, 550);
+        setSize(1440, 1024);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         getContentPane().setBackground(StyleGuide.COLOR_BG);
@@ -30,7 +30,7 @@ public class LoginFrame extends JFrame {
         gbc.gridx = 0;
         gbc.weightx = 1.0;
 
-        // Title
+        
         JLabel titleLabel = new JLabel("THE SEOUL KITCHEN", SwingConstants.CENTER);
         titleLabel.setFont(new Font(StyleGuide.FONT_TITLE.getName(), Font.BOLD, 24));
         titleLabel.setForeground(StyleGuide.COLOR_SIDEBAR);
@@ -38,7 +38,7 @@ public class LoginFrame extends JFrame {
         gbc.insets = new Insets(30, 20, 30, 20);
         centralPanel.add(titleLabel, gbc);
 
-        // User Label
+        
         JLabel userLabel = new JLabel("USUARIO");
         userLabel.setFont(StyleGuide.FONT_REGULAR);
         userLabel.setForeground(StyleGuide.COLOR_TEXT_MAIN);
@@ -46,7 +46,7 @@ public class LoginFrame extends JFrame {
         gbc.insets = new Insets(5, 20, 5, 20);
         centralPanel.add(userLabel, gbc);
 
-        // User Field
+        
         JTextField userField = new JTextField();
         userField.setFont(StyleGuide.FONT_REGULAR);
         userField.setBorder(StyleGuide.createRoundedBorder());
@@ -57,7 +57,7 @@ public class LoginFrame extends JFrame {
         gbc.insets = new Insets(0, 20, 15, 20);
         centralPanel.add(userField, gbc);
 
-        // Password Label
+        
         JLabel passLabel = new JLabel("CONTRASEÑA");
         passLabel.setFont(StyleGuide.FONT_REGULAR);
         passLabel.setForeground(StyleGuide.COLOR_TEXT_MAIN);
@@ -65,7 +65,7 @@ public class LoginFrame extends JFrame {
         gbc.insets = new Insets(5, 20, 5, 20);
         centralPanel.add(passLabel, gbc);
 
-        // Password Field
+        
         JPasswordField passField = new JPasswordField();
         passField.setFont(StyleGuide.FONT_REGULAR);
         passField.setBorder(StyleGuide.createRoundedBorder());
@@ -98,7 +98,7 @@ public class LoginFrame extends JFrame {
         gbc.insets = new Insets(0, 20, 30, 20);
         centralPanel.add(passField, gbc);
 
-        // Login Button
+        
         RoundedButton btnLogin = new RoundedButton("INICIAR SESIÓN");
         StyleGuide.stylePrimaryButton(btnLogin);
         btnLogin.addActionListener(e -> {
@@ -110,7 +110,7 @@ public class LoginFrame extends JFrame {
         gbc.insets = new Insets(10, 20, 15, 20);
         centralPanel.add(btnLogin, gbc);
 
-        // Register Link
+        
         JLabel lblRegister = new JLabel("¿No tienes cuenta? Regístrate aquí", SwingConstants.CENTER);
         lblRegister.setFont(StyleGuide.FONT_REGULAR);
         lblRegister.setForeground(StyleGuide.COLOR_PRIMARY);

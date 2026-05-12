@@ -36,7 +36,7 @@ public class ClienteFormDialog extends JDialog {
         txtEmail.setText(email);
         txtTelefono.setText(telefono);
         
-        // Find state item in combo (case insensitive)
+        
         for(int i=0; i<comboEstado.getItemCount(); i++) {
             if(comboEstado.getItemAt(i).equalsIgnoreCase(estado)) {
                 comboEstado.setSelectedIndex(i);
@@ -59,28 +59,28 @@ public class ClienteFormDialog extends JDialog {
         gbc.insets = new Insets(10, 0, 5, 0);
         gbc.weightx = 1.0;
 
-        // Nombre
+        
         gbc.gridy = 0;
         formPanel.add(createLabel("Nombre Completo:"), gbc);
         gbc.gridy = 1;
         txtNombre = createTextField();
         formPanel.add(txtNombre, gbc);
 
-        // Email
+        
         gbc.gridy = 2;
         formPanel.add(createLabel("Email:"), gbc);
         gbc.gridy = 3;
         txtEmail = createTextField();
         formPanel.add(txtEmail, gbc);
 
-        // Telefono
+        
         gbc.gridy = 4;
         formPanel.add(createLabel("Teléfono:"), gbc);
         gbc.gridy = 5;
         txtTelefono = createTextField();
         formPanel.add(txtTelefono, gbc);
 
-        // Estado
+        
         gbc.gridy = 6;
         formPanel.add(createLabel("Estado:"), gbc);
         gbc.gridy = 7;
@@ -90,7 +90,7 @@ public class ClienteFormDialog extends JDialog {
 
         add(formPanel, BorderLayout.CENTER);
 
-        // Footer buttons
+        
         JPanel footerPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         footerPanel.setBackground(StyleGuide.COLOR_BG);
         footerPanel.setBorder(new EmptyBorder(10, 20, 20, 20));
@@ -122,7 +122,7 @@ public class ClienteFormDialog extends JDialog {
             mainModel.setValueAt(txtTelefono.getText().trim(), editRow, 3);
             mainModel.setValueAt(comboEstado.getSelectedItem().toString(), editRow, 4);
         } else {
-            // New user creation stub
+            
             JOptionPane.showMessageDialog(this, "Cliente creado.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
         }
 

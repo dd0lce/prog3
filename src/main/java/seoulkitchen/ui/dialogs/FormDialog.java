@@ -27,19 +27,19 @@ public class FormDialog extends JDialog {
         gbc.insets = new Insets(10, 0, 5, 0);
         gbc.weightx = 1.0;
 
-        // Nombre
+        
         gbc.gridy = 0;
         formPanel.add(createLabel("Nombre del Platillo:"), gbc);
         gbc.gridy = 1;
         formPanel.add(createTextField(), gbc);
 
-        // Precio
+        
         gbc.gridy = 2;
         formPanel.add(createLabel("Precio:"), gbc);
         gbc.gridy = 3;
         formPanel.add(createTextField(), gbc);
 
-        // Estado
+        
         gbc.gridy = 4;
         formPanel.add(createLabel("Estado:"), gbc);
         gbc.gridy = 5;
@@ -47,14 +47,14 @@ public class FormDialog extends JDialog {
         comboEstado.setFont(StyleGuide.FONT_REGULAR);
         formPanel.add(comboEstado, gbc);
 
-        // Filler
+        
         gbc.gridy = 6;
         gbc.weighty = 1.0;
         formPanel.add(Box.createGlue(), gbc);
 
         add(formPanel, BorderLayout.CENTER);
 
-        // Footer buttons
+        
         JPanel footerPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         footerPanel.setBackground(StyleGuide.COLOR_BG);
         footerPanel.setBorder(new EmptyBorder(10, 20, 20, 20));

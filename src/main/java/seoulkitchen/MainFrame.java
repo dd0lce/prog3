@@ -21,22 +21,22 @@ public class MainFrame extends JFrame {
         setTitle("THE SEOUL KITCHEN - Sistema de Gestión");
         setSize(1440, 1024);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null); // Centrar en pantalla
+        setLocationRelativeTo(null); 
         setLayout(new BorderLayout());
 
-        // Inicializar CardLayout y Panel Central
+        
         cardLayout = new CardLayout();
         centerPanel = new JPanel(cardLayout);
         centerPanel.setBackground(StyleGuide.COLOR_BG);
 
-        // Añadir las vistas al CardLayout
+        
         centerPanel.add(new DashboardPanel(), "Dashboard");
         centerPanel.add(new PlatillosPanel(), "Platillos");
         centerPanel.add(new OrdenesPanel(), "Ordenes");
         centerPanel.add(new ClientesPanel(), "Clientes");
         centerPanel.add(new InventarioPanel(), "Inventario");
 
-        // Inicializar y añadir la Sidebar
+        
         Sidebar sidebar = new Sidebar(centerPanel, cardLayout);
         add(sidebar, BorderLayout.WEST);
         add(centerPanel, BorderLayout.CENTER);

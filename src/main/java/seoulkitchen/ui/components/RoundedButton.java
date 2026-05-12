@@ -59,7 +59,7 @@ public class RoundedButton extends JButton {
         
         graphics.fillRoundRect(0, 0, getWidth(), getHeight(), cornerRadius, cornerRadius);
         
-        super.paintComponent(g); // Pintar texto por defecto
+        super.paintComponent(g); 
         graphics.dispose();
     }
 }

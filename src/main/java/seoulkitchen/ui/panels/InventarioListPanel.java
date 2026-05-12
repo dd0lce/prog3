@@ -25,7 +25,7 @@ public class InventarioListPanel extends JPanel {
         setLayout(new BorderLayout());
         setBackground(StyleGuide.COLOR_BG);
 
-        // Header and Search
+        
         JPanel topContainer = new JPanel(new BorderLayout());
         topContainer.setBackground(StyleGuide.COLOR_BG);
 
@@ -72,7 +72,7 @@ public class InventarioListPanel extends JPanel {
         
         topContainer.add(topHeader, BorderLayout.NORTH);
 
-        // Dashboard de Inventario (4 tarjetas)
+        
         JPanel cardsPanel = new JPanel(new GridLayout(1, 4, 15, 0));
         cardsPanel.setBackground(StyleGuide.COLOR_BG);
         cardsPanel.setBorder(new EmptyBorder(0, 20, 20, 20));
@@ -86,7 +86,7 @@ public class InventarioListPanel extends JPanel {
         topContainer.add(cardsPanel, BorderLayout.CENTER);
         add(topContainer, BorderLayout.NORTH);
 
-        // Table
+        
         JPanel tableContainer = new JPanel(new BorderLayout());
         tableContainer.setBackground(StyleGuide.COLOR_BG);
         tableContainer.setBorder(new EmptyBorder(0, 20, 20, 20));
@@ -102,7 +102,7 @@ public class InventarioListPanel extends JPanel {
         DefaultTableModel model = new DefaultTableModel(data, columnNames) {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return column == 5; // Solo acciones
+                return column == 5; 
             }
         };
 
@@ -111,7 +111,7 @@ public class InventarioListPanel extends JPanel {
         table.setFont(StyleGuide.FONT_REGULAR);
         table.setShowGrid(false);
 
-        // Alternating row colors
+        
         table.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
             @Override
             public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
@@ -129,7 +129,7 @@ public class InventarioListPanel extends JPanel {
         header.setFont(StyleGuide.FONT_BOLD);
         header.setPreferredSize(new Dimension(100, 40));
 
-        // Use BadgeRenderer for Estado
+        
         table.getColumnModel().getColumn(4).setCellRenderer(new BadgeRenderer());
         
         InventarioActionCellEditorRenderer actionRenderer = new InventarioActionCellEditorRenderer(parentPanel);

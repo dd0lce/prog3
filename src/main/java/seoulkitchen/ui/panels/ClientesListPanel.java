@@ -23,7 +23,7 @@ public class ClientesListPanel extends JPanel {
         setLayout(new BorderLayout());
         setBackground(StyleGuide.COLOR_BG);
 
-        // Header and Actions
+        
         JPanel topPanel = new JPanel(new BorderLayout());
         topPanel.setBackground(StyleGuide.COLOR_BG);
         topPanel.setBorder(new EmptyBorder(20, 20, 20, 20));
@@ -71,7 +71,7 @@ public class ClientesListPanel extends JPanel {
 
         add(topPanel, BorderLayout.NORTH);
 
-        // Table
+        
         JPanel tableContainer = new JPanel(new BorderLayout());
         tableContainer.setBackground(StyleGuide.COLOR_BG);
         tableContainer.setBorder(new EmptyBorder(0, 20, 20, 20));
@@ -86,7 +86,7 @@ public class ClientesListPanel extends JPanel {
         DefaultTableModel model = new DefaultTableModel(data, columnNames) {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return column == 5; // Acciones editable
+                return column == 5; 
             }
         };
 

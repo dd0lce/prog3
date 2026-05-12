@@ -24,7 +24,7 @@ public class OrdenesListPanel extends JPanel {
         setLayout(new BorderLayout());
         setBackground(StyleGuide.COLOR_BG);
 
-        // Header and Actions
+        
         JPanel topPanel = new JPanel(new BorderLayout());
         topPanel.setBackground(StyleGuide.COLOR_BG);
         topPanel.setBorder(new EmptyBorder(20, 20, 20, 20));
@@ -46,7 +46,7 @@ public class OrdenesListPanel extends JPanel {
 
         add(topPanel, BorderLayout.NORTH);
 
-        // Table
+        
         JPanel tableContainer = new JPanel(new BorderLayout());
         tableContainer.setBackground(StyleGuide.COLOR_BG);
         tableContainer.setBorder(new EmptyBorder(0, 20, 20, 20));
@@ -61,7 +61,7 @@ public class OrdenesListPanel extends JPanel {
         DefaultTableModel model = new DefaultTableModel(data, columnNames) {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return column == 5; // Solo acciones
+                return column == 5; 
             }
         };
 
@@ -72,7 +72,7 @@ public class OrdenesListPanel extends JPanel {
         table.setShowGrid(false);
         table.setIntercellSpacing(new Dimension(0, 0));
 
-        // Filas alternadas en crema
+        
         table.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
             @Override
             public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
@@ -84,14 +84,14 @@ public class OrdenesListPanel extends JPanel {
             }
         });
 
-        // Header Styling
+        
         JTableHeader header = table.getTableHeader();
         header.setBackground(StyleGuide.COLOR_SIDEBAR);
         header.setForeground(Color.WHITE);
         header.setFont(StyleGuide.FONT_BOLD);
         header.setPreferredSize(new Dimension(100, 40));
 
-        // Badge Renderer for Status
+        
         table.getColumnModel().getColumn(4).setCellRenderer(new BadgeRenderer());
 
         seoulkitchen.ui.components.OrdenesActionCellEditorRenderer actionRenderer = new seoulkitchen.ui.components.OrdenesActionCellEditorRenderer(parentPanel, parentPanel.getFormPanel());

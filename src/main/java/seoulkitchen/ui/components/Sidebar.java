@@ -22,7 +22,7 @@ public class Sidebar extends JPanel {
         setBackground(StyleGuide.COLOR_SIDEBAR);
         setLayout(new BorderLayout());
 
-        // Logo / Título
+        
         JLabel logoLabel = new JLabel("THE SEOUL KITCHEN");
         logoLabel.setFont(new Font(StyleGuide.FONT_TITLE.getName(), Font.BOLD, 22));
         logoLabel.setForeground(Color.WHITE);
@@ -30,7 +30,7 @@ public class Sidebar extends JPanel {
         logoLabel.setBorder(new EmptyBorder(40, 20, 40, 20));
         add(logoLabel, BorderLayout.NORTH);
 
-        // Menú de Navegación
+        
         JPanel menuPanel = new JPanel();
         menuPanel.setLayout(new BoxLayout(menuPanel, BoxLayout.Y_AXIS));
         menuPanel.setBackground(StyleGuide.COLOR_SIDEBAR);
@@ -47,14 +47,14 @@ public class Sidebar extends JPanel {
 
         add(menuPanel, BorderLayout.CENTER);
 
-        // Botón Cerrar Sesión
+        
         JPanel bottomPanel = new JPanel(new BorderLayout());
         bottomPanel.setBackground(StyleGuide.COLOR_SIDEBAR);
         bottomPanel.setBorder(new EmptyBorder(20, 20, 40, 20));
 
         RoundedButton logoutButton = new RoundedButton("🚪 Cerrar Sesión");
         StyleGuide.styleSidebarButton(logoutButton);
-        logoutButton.setForeground(StyleGuide.COLOR_BADGE_CANCELLED_BG); // Un poco de color rojo suave para destacar
+        logoutButton.setForeground(StyleGuide.COLOR_BADGE_CANCELLED_BG); 
         logoutButton.addActionListener(e -> {
             int confirm = JOptionPane.showConfirmDialog(this, "¿Seguro que deseas cerrar sesión?", "Cerrar Sesión", JOptionPane.YES_NO_OPTION);
             if (confirm == JOptionPane.YES_OPTION) {

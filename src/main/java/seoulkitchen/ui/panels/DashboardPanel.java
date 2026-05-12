@@ -17,19 +17,19 @@ public class DashboardPanel extends JPanel {
         setBackground(StyleGuide.COLOR_BG);
         setBorder(new EmptyBorder(30, 30, 30, 30));
 
-        // Título del Dashboard
+        
         JLabel titleLabel = new JLabel("Dashboard General");
         titleLabel.setFont(new Font(StyleGuide.FONT_TITLE.getName(), Font.BOLD, 28));
         titleLabel.setForeground(StyleGuide.COLOR_TEXT_MAIN);
         titleLabel.setBorder(new EmptyBorder(0, 0, 20, 0));
         add(titleLabel, BorderLayout.NORTH);
 
-        // Panel Central para Cards y Atención
+        
         JPanel centerPanel = new JPanel();
         centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
         centerPanel.setBackground(StyleGuide.COLOR_BG);
 
-        // Cards Superiores
+        
         JPanel cardsPanel = new JPanel(new GridLayout(1, 4, 20, 0));
         cardsPanel.setBackground(StyleGuide.COLOR_BG);
         cardsPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 150));
@@ -42,7 +42,7 @@ public class DashboardPanel extends JPanel {
         centerPanel.add(cardsPanel);
         centerPanel.add(Box.createRigidArea(new Dimension(0, 30)));
 
-        // Panel de Atención
+        
         RoundedPanel attentionPanel = new RoundedPanel(new BorderLayout(), 15);
         attentionPanel.setBackground(StyleGuide.COLOR_ALERT_BG);
         attentionPanel.setBorder(new EmptyBorder(20, 20, 20, 20));
@@ -60,7 +60,7 @@ public class DashboardPanel extends JPanel {
         attentionPanel.add(alertDesc, BorderLayout.CENTER);
 
         centerPanel.add(attentionPanel);
-        centerPanel.add(Box.createVerticalGlue()); // Para empujar todo hacia arriba
+        centerPanel.add(Box.createVerticalGlue()); 
 
         add(centerPanel, BorderLayout.CENTER);
     }
