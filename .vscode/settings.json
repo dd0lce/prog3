@@ -2,6 +2,7 @@
     "java.project.sourcePaths": ["src/main/java"],
     "java.project.outputPath": "bin",
     "java.project.referencedLibraries": [
-        "lib/**/*.jar"
+        "lib/flatlaf-3.4.1.jar",
+        "lib/mysql-connector-j-8.3.0.jar"
     ]
 }

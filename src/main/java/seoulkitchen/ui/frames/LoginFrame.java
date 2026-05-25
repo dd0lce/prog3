@@ -2,6 +2,9 @@ package seoulkitchen.ui.frames;
 
 import seoulkitchen.MainFrame;
 import seoulkitchen.utils.StyleGuide;
+import seoulkitchen.utils.ConexionBD;
+import seoulkitchen.dao.UsuarioDAO;
+import seoulkitchen.model.Usuario;
 import seoulkitchen.ui.components.RoundedButton;
 import seoulkitchen.ui.components.RoundedPanel;
 
@@ -9,6 +12,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.SQLException;
 
 public class LoginFrame extends JFrame {
 
@@ -102,9 +106,57 @@ public class LoginFrame extends JFrame {
         RoundedButton btnLogin = new RoundedButton("INICIAR SESIÓN");
         StyleGuide.stylePrimaryButton(btnLogin);
         btnLogin.addActionListener(e -> {
-            MainFrame dashboard = new MainFrame();
-            dashboard.setVisible(true);
-            this.dispose();
+            // ── 1. Leer campos y verificar que no estén vacíos/placeholder ──
+            String inputUser = userField.getText().trim();
+            String inputPass = new String(passField.getPassword()).trim();
+
+            boolean userIsPlaceholder = inputUser.equals("Ingresa tu usuario") || inputUser.isEmpty();
+            boolean passIsPlaceholder = inputPass.equals("Ingresa tu contraseña") || inputPass.isEmpty();
+
+            if (userIsPlaceholder || passIsPlaceholder) {
+                JOptionPane.showMessageDialog(
+                    this,
+                    "Por favor ingresa tu usuario y contraseña.",
+                    "Campos vacíos",
+                    JOptionPane.WARNING_MESSAGE
+                );
+                return;
+            }
+
+            // ── 2. Autenticar contra la base de datos ────────────────────────
+            UsuarioDAO dao = new UsuarioDAO();
+            try {
+                Usuario usuario = dao.autenticar(inputUser, inputPass);
+
+                if (usuario == null) {
+                    // Credenciales incorrectas
+                    JOptionPane.showMessageDialog(
+                        this,
+                        "Usuario o contraseña incorrectos.\nVerifica tus datos e intenta de nuevo.",
+                        "Acceso Denegado",
+                        JOptionPane.ERROR_MESSAGE
+                    );
+                    passField.setText("");
+                    passField.setEchoChar((char) 0);
+                    passField.setText("Ingresa tu contraseña");
+                    passField.setForeground(StyleGuide.COLOR_TEXT_SECONDARY);
+                } else {
+                    // ── 3. Éxito: abrir dashboard y destruir ventana de login ─
+                    MainFrame dashboard = new MainFrame();
+                    dashboard.setVisible(true);
+                    this.dispose();
+                }
+
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(
+                    this,
+                    "No se pudo conectar a la base de datos.\n" +
+                    "Verifica que MySQL esté activo y que los datos en ConexionBD sean correctos.\n\n" +
+                    "Detalle técnico: " + ex.getMessage(),
+                    "Error de Conexión",
+                    JOptionPane.ERROR_MESSAGE
+                );
+            }
         });
         gbc.gridy = 5;
         gbc.insets = new Insets(10, 20, 15, 20);
