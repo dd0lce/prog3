@@ -1,5 +1,4 @@
 package seoulkitchen.ui.components;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,58 +6,76 @@ import javax.swing.*;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 import seoulkitchen.utils.StyleGuide;
-import seoulkitchen.ui.dialogs.PlatilloDetalleDialog;
 import seoulkitchen.ui.dialogs.PlatilloFormDialog;
+import seoulkitchen.ui.panels.PlatillosPanel;
+import seoulkitchen.model.Platillo;
+import seoulkitchen.dao.PlatilloDAO;
 
 public class PlatilloActionCellEditorRenderer extends AbstractCellEditor implements TableCellRenderer, TableCellEditor {
-    
     private final JPanel renderPanel;
     private final JPanel editPanel;
-    private final JButton btnViewR, btnEditR;
-    private final JButton btnViewE, btnEditE;
+    private final JButton btnEditR, btnDeleteR;
+    private final JButton btnEditE, btnDeleteE;
     private JTable table;
-    private int currentRow;
+    private PlatillosPanel parentPanel;
+    private Platillo platilloActual;
 
-    public PlatilloActionCellEditorRenderer(Component parentComponent) {
+    public PlatilloActionCellEditorRenderer(PlatillosPanel parentPanel) {
+        this.parentPanel = parentPanel;
         renderPanel = createActionPanel();
-        btnViewR = createActionButton("👁", StyleGuide.COLOR_PRIMARY); 
         btnEditR = createActionButton("✎", new Color(33, 150, 243)); 
-        renderPanel.add(btnViewR);
+        btnDeleteR = createActionButton("🗑", new Color(244, 67, 54));
         renderPanel.add(btnEditR);
-
+        renderPanel.add(btnDeleteR);
+        
         editPanel = createActionPanel();
-        btnViewE = createActionButton("👁", StyleGuide.COLOR_PRIMARY);
         btnEditE = createActionButton("✎", new Color(33, 150, 243));
-        editPanel.add(btnViewE);
+        btnDeleteE = createActionButton("🗑", new Color(244, 67, 54));
         editPanel.add(btnEditE);
-
+        editPanel.add(btnDeleteE);
+        
         ActionListener actionListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 fireEditingStopped();
-                if (e.getSource() == btnViewE) {
-                    PlatilloDetalleDialog detailDialog = new PlatilloDetalleDialog((Frame) SwingUtilities.getWindowAncestor(parentComponent));
-                    detailDialog.setVisible(true);
-                } else if (e.getSource() == btnEditE) {
-                    seoulkitchen.ui.dialogs.PlatilloFormDialog formDialog = new seoulkitchen.ui.dialogs.PlatilloFormDialog((Frame) SwingUtilities.getWindowAncestor(parentComponent), "Editar Platillo");
-                    if (table != null) {
-                        formDialog.loadDataForEdit((javax.swing.table.DefaultTableModel) table.getModel(), currentRow);
-                    }
+                if (platilloActual == null) return;
+                
+                if (e.getSource() == btnEditE) {
+                    PlatilloFormDialog formDialog = new PlatilloFormDialog(
+                        (Frame) SwingUtilities.getWindowAncestor(parentPanel), 
+                        "Editar Platillo", 
+                        parentPanel::cargarDatos
+                    );
+                    formDialog.loadDataForEdit(platilloActual);
                     formDialog.setVisible(true);
+                } else if (e.getSource() == btnDeleteE) {
+                    int confirm = JOptionPane.showConfirmDialog(
+                        parentPanel, 
+                        "¿Estás seguro de eliminar el platillo " + platilloActual.getNombre() + "?", 
+                        "Confirmar Eliminación", 
+                        JOptionPane.YES_NO_OPTION
+                    );
+                    if (confirm == JOptionPane.YES_OPTION) {
+                        PlatilloDAO dao = new PlatilloDAO();
+                        if(dao.eliminar(platilloActual.getId())) {
+                            parentPanel.cargarDatos();
+                        } else {
+                            JOptionPane.showMessageDialog(parentPanel, "Error al eliminar platillo", "Error", JOptionPane.ERROR_MESSAGE);
+                        }
+                    }
                 }
             }
         };
-
-        btnViewE.addActionListener(actionListener);
         btnEditE.addActionListener(actionListener);
+        btnDeleteE.addActionListener(actionListener);
     }
-
+    
     private JPanel createActionPanel() {
         JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER, 5, 2));
         panel.setOpaque(true);
         return panel;
     }
-
+    
     private JButton createActionButton(String text, Color color) {
         JButton button = new JButton(text);
         button.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 14));
@@ -70,7 +87,7 @@ public class PlatilloActionCellEditorRenderer extends AbstractCellEditor impleme
         button.setCursor(new Cursor(Cursor.HAND_CURSOR));
         return button;
     }
-
+    
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
         if (isSelected) {
@@ -80,17 +97,19 @@ public class PlatilloActionCellEditorRenderer extends AbstractCellEditor impleme
         }
         return renderPanel;
     }
-
+    
     @Override
     public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
         this.table = table;
-        this.currentRow = row;
+        if (value instanceof Platillo) {
+            this.platilloActual = (Platillo) value;
+        }
         editPanel.setBackground(table.getSelectionBackground());
         return editPanel;
     }
-
+    
     @Override
     public Object getCellEditorValue() {
-        return "";
+        return platilloActual;
     }
 }

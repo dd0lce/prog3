@@ -1,5 +1,4 @@
 package seoulkitchen.ui.components;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,59 +6,79 @@ import javax.swing.*;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 import seoulkitchen.utils.StyleGuide;
+import seoulkitchen.ui.dialogs.InventarioFormDialog;
 import seoulkitchen.ui.panels.InventarioPanel;
+import seoulkitchen.model.InventarioItem;
+import seoulkitchen.dao.InventarioDAO;
 
 public class InventarioActionCellEditorRenderer extends AbstractCellEditor implements TableCellRenderer, TableCellEditor {
-    
     private final JPanel renderPanel;
     private final JPanel editPanel;
-    private final JButton btnViewR, btnEditR;
-    private final JButton btnViewE, btnEditE;
+    private final JButton btnEditR, btnDeleteR;
+    private final JButton btnEditE, btnDeleteE;
     private JTable table;
-    private int currentRow;
+    private InventarioPanel parentPanel;
+    private InventarioItem itemActual;
 
     public InventarioActionCellEditorRenderer(InventarioPanel parentPanel) {
+        this.parentPanel = parentPanel;
         renderPanel = createActionPanel();
-        btnViewR = createActionButton("👁", StyleGuide.COLOR_PRIMARY);
-        btnEditR = createActionButton("✎", new Color(33, 150, 243));
-        renderPanel.add(btnViewR);
+        btnEditR = createActionButton("✎", new Color(33, 150, 243)); 
+        btnDeleteR = createActionButton("🗑", new Color(244, 67, 54));
         renderPanel.add(btnEditR);
-
+        renderPanel.add(btnDeleteR);
+        
         editPanel = createActionPanel();
-        btnViewE = createActionButton("👁", StyleGuide.COLOR_PRIMARY);
         btnEditE = createActionButton("✎", new Color(33, 150, 243));
-        editPanel.add(btnViewE);
+        btnDeleteE = createActionButton("🗑", new Color(244, 67, 54));
         editPanel.add(btnEditE);
-
+        editPanel.add(btnDeleteE);
+        
         ActionListener actionListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 fireEditingStopped();
-                if (e.getSource() == btnViewE) {
-                    parentPanel.showCard("Detalle");
-                } else if (e.getSource() == btnEditE) {
-                    seoulkitchen.ui.dialogs.InventarioFormDialog dialog = new seoulkitchen.ui.dialogs.InventarioFormDialog((Frame) SwingUtilities.getWindowAncestor(parentPanel), "Editar Ingrediente");
-                    if (table != null) {
-                        dialog.loadDataForEdit((javax.swing.table.DefaultTableModel) table.getModel(), currentRow);
+                if (itemActual == null) return;
+                
+                if (e.getSource() == btnEditE) {
+                    InventarioFormDialog formDialog = new InventarioFormDialog(
+                        (Frame) SwingUtilities.getWindowAncestor(parentPanel), 
+                        "Editar Inventario", 
+                        parentPanel::cargarDatos
+                    );
+                    formDialog.loadDataForEdit(itemActual);
+                    formDialog.setVisible(true);
+                } else if (e.getSource() == btnDeleteE) {
+                    int confirm = JOptionPane.showConfirmDialog(
+                        parentPanel, 
+                        "¿Estás seguro de eliminar el artículo " + itemActual.getNombre() + "?", 
+                        "Confirmar Eliminación", 
+                        JOptionPane.YES_NO_OPTION
+                    );
+                    if (confirm == JOptionPane.YES_OPTION) {
+                        InventarioDAO dao = new InventarioDAO();
+                        if(dao.eliminar(itemActual.getId())) {
+                            parentPanel.cargarDatos();
+                        } else {
+                            JOptionPane.showMessageDialog(parentPanel, "Error al eliminar artículo", "Error", JOptionPane.ERROR_MESSAGE);
+                        }
                     }
-                    dialog.setVisible(true);
                 }
             }
         };
-
-        btnViewE.addActionListener(actionListener);
         btnEditE.addActionListener(actionListener);
+        btnDeleteE.addActionListener(actionListener);
     }
-
+    
     private JPanel createActionPanel() {
         JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER, 5, 2));
         panel.setOpaque(true);
         return panel;
     }
-
+    
     private JButton createActionButton(String text, Color color) {
         JButton button = new JButton(text);
-        button.setFont(new Font("Segoe UI Symbol", Font.BOLD, 12));
+        button.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 14));
         button.setForeground(color);
         button.setBackground(Color.WHITE);
         button.setBorder(BorderFactory.createEmptyBorder(2, 5, 2, 5));
@@ -68,7 +87,7 @@ public class InventarioActionCellEditorRenderer extends AbstractCellEditor imple
         button.setCursor(new Cursor(Cursor.HAND_CURSOR));
         return button;
     }
-
+    
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
         if (isSelected) {
@@ -78,17 +97,19 @@ public class InventarioActionCellEditorRenderer extends AbstractCellEditor imple
         }
         return renderPanel;
     }
-
+    
     @Override
     public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
         this.table = table;
-        this.currentRow = row;
+        if (value instanceof InventarioItem) {
+            this.itemActual = (InventarioItem) value;
+        }
         editPanel.setBackground(table.getSelectionBackground());
         return editPanel;
     }
-
+    
     @Override
     public Object getCellEditorValue() {
-        return "";
+        return itemActual;
     }
 }

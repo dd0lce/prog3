@@ -1,39 +1,28 @@
 package seoulkitchen.utils;
-
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
-
 public class StyleGuide {
-
-    
     public static final Color COLOR_BG = new Color(245, 241, 232); 
     public static final Color COLOR_SIDEBAR = new Color(112, 66, 20); 
     public static final Color COLOR_PRIMARY = new Color(176, 132, 91); 
-
     public static final Color COLOR_TEXT_MAIN = new Color(26, 26, 26); 
     public static final Color COLOR_TEXT_SECONDARY = new Color(117, 117, 117); 
     public static final Color COLOR_TEXT_LIGHT = Color.WHITE;
-
     public static final Color COLOR_BADGE_ACTIVE_BG = new Color(200, 230, 201); 
     public static final Color COLOR_BADGE_ACTIVE_TEXT = new Color(46, 125, 50); 
-
     public static final Color COLOR_BADGE_PENDING_BG = new Color(255, 249, 196); 
     public static final Color COLOR_BADGE_PENDING_TEXT = new Color(251, 192, 45); 
-
     public static final Color COLOR_BADGE_CANCELLED_BG = new Color(255, 205, 210); 
     public static final Color COLOR_BADGE_CANCELLED_TEXT = new Color(198, 40, 40); 
-
     public static final Color COLOR_ALERT_BG = new Color(255, 249, 196); 
-
     public static final Font FONT_TITLE = new Font("SansSerif", Font.BOLD, 24);
     public static final Font FONT_HEADING = new Font("SansSerif", Font.BOLD, 18);
     public static final Font FONT_REGULAR = new Font("SansSerif", Font.PLAIN, 14);
     public static final Font FONT_SMALL = new Font("SansSerif", Font.PLAIN, 12);
     public static final Font FONT_BOLD = new Font("SansSerif", Font.BOLD, 14);
-
     public static void stylePrimaryButton(JButton button) {
         button.setBackground(COLOR_PRIMARY);
         button.setForeground(COLOR_TEXT_LIGHT);
@@ -43,7 +32,6 @@ public class StyleGuide {
         button.setCursor(new Cursor(Cursor.HAND_CURSOR));
         button.setBorder(new EmptyBorder(10, 20, 10, 20));
     }
-
     public static void styleSidebarButton(JButton button) {
         button.setBackground(COLOR_SIDEBAR);
         button.setForeground(COLOR_TEXT_LIGHT);
@@ -54,7 +42,6 @@ public class StyleGuide {
         button.setHorizontalAlignment(SwingConstants.LEFT);
         button.setBorder(new EmptyBorder(15, 25, 15, 25));
     }
-
     public static Border createRoundedBorder() {
         return BorderFactory.createCompoundBorder(
                 new LineBorder(COLOR_TEXT_SECONDARY, 1, true),

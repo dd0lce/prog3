@@ -1,18 +1,9 @@
--- ============================================================
--- Seoul Kitchen — Script de Inicialización de Base de Datos
--- Versión: 1.0 | Motor: MySQL 8.x
--- ============================================================
-
--- 1. Crear y seleccionar la base de datos
 CREATE DATABASE IF NOT EXISTS seoul_kitchen
     CHARACTER SET utf8mb4
     COLLATE utf8mb4_unicode_ci;
 
 USE seoul_kitchen;
 
--- ============================================================
--- 2. Tabla: usuarios  (autenticación)
--- ============================================================
 CREATE TABLE IF NOT EXISTS usuarios (
     id            INT          NOT NULL AUTO_INCREMENT,
     nombre        VARCHAR(100) NOT NULL,
@@ -25,14 +16,9 @@ CREATE TABLE IF NOT EXISTS usuarios (
     PRIMARY KEY (id)
 ) ENGINE=InnoDB;
 
--- Usuario de prueba (contraseña: admin123)
--- NOTA: En producción almacenar hash BCrypt, no texto plano.
 INSERT IGNORE INTO usuarios (nombre, apellido, email, username, password_hash)
 VALUES ('Administrador', 'Seoul', 'admin@seoulkitchen.com', 'admin', 'admin123');
 
--- ============================================================
--- 3. Tabla: platillos
--- ============================================================
 CREATE TABLE IF NOT EXISTS platillos (
     id         INT            NOT NULL AUTO_INCREMENT,
     nombre     VARCHAR(150)   NOT NULL,
@@ -43,15 +29,11 @@ CREATE TABLE IF NOT EXISTS platillos (
     PRIMARY KEY (id)
 ) ENGINE=InnoDB;
 
--- Datos de muestra
 INSERT IGNORE INTO platillos (id, nombre, categoria, precio, estado) VALUES
 (1, 'Bibimbap Especial',  'Plato Principal', 185.00, 'Activo'),
 (2, 'Tteokbokki',         'Entradas',        120.00, 'Agotado'),
 (3, 'Kimbap de Atún',     'Entradas',         95.00, 'Activo');
 
--- ============================================================
--- 4. Tabla: clientes
--- ============================================================
 CREATE TABLE IF NOT EXISTS clientes (
     id         INT          NOT NULL AUTO_INCREMENT,
     nombre     VARCHAR(100) NOT NULL,
@@ -63,15 +45,11 @@ CREATE TABLE IF NOT EXISTS clientes (
     PRIMARY KEY (id)
 ) ENGINE=InnoDB;
 
--- Datos de muestra
 INSERT IGNORE INTO clientes (id, nombre, apellido, email, telefono) VALUES
 (1, 'Carlos', 'López',   'carlos.lopez@mail.com',  '555-1001'),
 (2, 'María',  'García',  'maria.garcia@mail.com',   '555-1002'),
 (3, 'Luis',   'Martínez','luis.martinez@mail.com',  '555-1003');
 
--- ============================================================
--- 5. Tabla: inventario
--- ============================================================
 CREATE TABLE IF NOT EXISTS inventario (
     id          INT          NOT NULL AUTO_INCREMENT,
     nombre      VARCHAR(150) NOT NULL,
@@ -82,15 +60,11 @@ CREATE TABLE IF NOT EXISTS inventario (
     PRIMARY KEY (id)
 ) ENGINE=InnoDB;
 
--- Datos de muestra
 INSERT IGNORE INTO inventario (id, nombre, cantidad, unidad, nivel_alerta) VALUES
 (1, 'Arroz Coreano',   50, 'kg',    10),
 (2, 'Gochujang',        8, 'litro',  5),
 (3, 'Algas Nori',      30, 'paquete',5);
 
--- ============================================================
--- 6. Tabla: ordenes
--- ============================================================
 CREATE TABLE IF NOT EXISTS ordenes (
     id           INT            NOT NULL AUTO_INCREMENT,
     id_cliente   INT            NOT NULL,
@@ -101,9 +75,6 @@ CREATE TABLE IF NOT EXISTS ordenes (
     CONSTRAINT fk_orden_cliente FOREIGN KEY (id_cliente) REFERENCES clientes(id)
 ) ENGINE=InnoDB;
 
--- ============================================================
--- 7. Tabla: orden_detalle  (items de cada orden)
--- ============================================================
 CREATE TABLE IF NOT EXISTS orden_detalle (
     id           INT            NOT NULL AUTO_INCREMENT,
     id_orden     INT            NOT NULL,
