@@ -1,4 +1,4 @@
-SEGUNDA ENTREGA - PROYECTO FINAL - THE SEOUL KITCHEN
+TERCERA ENTREGA - PROYECTO FINAL - THE SEOUL KITCHEN
 
 Programa hecho en Java para ayudar a manejar un restaurante de comida coreana. El sistema se llama The Seoul Kitchen y tiene todo lo que se ocupa para administrar el negocio.
 
@@ -23,6 +23,18 @@ Acomode todo en carpetas para que no estuviera revuelto. En la carpeta de java p
 Detalles de la programacion:
 
 Use Java Swing para hacer todas las interfaces. Para que el programa no abra mil ventanas use CardLayout, asi todo cambia en la misma pantalla de forma mas limpia. Tambien me asegure de usar el comando dispose cuando cierras sesion o cancelas algo para que no se queden procesos abiertos gastando memoria.
+
+Esta version ya cuenta con conexiones a la base de datos y funcionalidad completa en todos los modulos:
+
+Dashboard: muestra estadísticas en tiempo real como total de ventas y pedidos pendientes.
+
+Menú: permite agregar, editar y eliminar platillos.
+
+Pedidos: registro de nuevos pedidos, gestión del estado (pendiente, preparado, entregado, cancelado) y visualización del historial.
+
+Clientes: registro, edición y visualización del historial de pedidos.
+
+Inventario: gestión de ingredientes con alertas automáticas cuando los niveles son bajos.
 
 Para que funcione:
 
